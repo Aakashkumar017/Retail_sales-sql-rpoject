@@ -6,40 +6,33 @@ SELECT COUNT(DISTINCT customer_id) FROM retail_sales
 DELETE FROM retail_sales
 WHERE 
     retail_sales.transactions_id IS NULL
-    OR
-    retail_sales.sale_date IS NULL
-    OR 
-    retail_sales.sale_date IS NULL
-    OR
-    retail_sales.gender IS NULL
-    OR
-    retail_sales.category IS NULL
-    OR
-    retail_sales.quantiy IS NULL
-    OR
-    retail_sales.cogs IS NULL
-    OR
-    retail_sales.total_sale IS NULL;
+    OR retail_sales.sale_date IS NULL
+    OR retail_sales.sale_date IS NULL
+    OR retail_sales.gender IS NULL
+    OR retail_sales.category IS NULL
+    OR retail_sales.quantiy IS NULL
+    OR retail_sales.cogs IS NULL
+    OR retail_sales.total_sale IS NULL;
 
 -- Q.1 Write a SQL query to retrieve all columns for sales made on '2022-11-05
-SELECT 
-	*
+SELECT *
 FROM retail_sales
 WHERE retail_sales.sale_date='2022-11-05'
 
--- Q.2 Write a SQL query to retrieve all transactions where the category is 'Clothing' and the quantity sold is more than 4 in the month of Nov-202
+-- Q.2 Write a SQL query to retrieve all transactions where the category is 'Clothing' and the quantity sold is more than and equal 2 in the month of Nov-202
 
 SELECT 
  	retail_sales.transactions_id
 FROM retail_sales
 WHERE category='Clothing'
-		AND
-	  quantiy>=2
-	  	AND
-	  TO_CHAR(sale_date, 'YYYY-MM') = '2022-11';
+	AND quantiy>=2
+	AND TO_CHAR(sale_date, 'YYYY-MM') = '2022-11';
 
 -- Q.3 Write a SQL query to calculate the total sales (total_sale) for each category.
-SELECT category , sum(total_sale) FROM retail_sales
+SELECT 
+	category ,
+	sum(total_sale) 
+FROM retail_sales
 GROUP BY category
 
 -- Q.4 Write a SQL query to find the average age of customers who purchased items from the 'Beauty' category.
@@ -64,7 +57,7 @@ SELECT
 	category,
 	retail_sales.gender 
 FROM retail_sales
-	GROUP BY  category,gender
+GROUP BY  category,gender
 
 -- Q.7 Write a SQL query to calculate the average sale for each month. Find out best selling month in each year
 SELECT 
@@ -114,4 +107,5 @@ FROM retail_sales
 SELECT * FROM retail_sales
 
 --END RETAIL SALES PROJECT
+
 		
